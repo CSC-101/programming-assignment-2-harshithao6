@@ -46,10 +46,10 @@ def shorter_duration_than(d1: data.Duration, d2: data.Duration):
 def song_shorter_than(l1: list[data.Song], d: data.Duration):
     shortlist = []
     for i in range(len(l1)):
-        if i.minutes<= d.minutes:
-            shortlist.append(i.title)
-        elif i.seconds<i.seconds:
-            shortlist.append(i.title)
+        if l1[i].duration.minutes<= d.minutes:
+            shortlist.append(l1[i])
+        elif l1[i].duration.seconds<d.seconds:
+            shortlist.append(l1[i])
     return shortlist
 
 
@@ -60,7 +60,10 @@ def running_time(l1: list[data.Song], l2: [int]):
     for i in l2:
        totalmin = l1[i].duration.minutes + totalmin
        totalsec = l1[i].duration.seconds + totalsec
-    return totalmin + totalsec%10
+
+    totalmin += totalsec// 60
+    totalsec = totalsec % 60
+    return data.Duration(totalmin,totalsec)
 
 
 # Part 5
@@ -68,4 +71,33 @@ def running_time(l1: list[data.Song], l2: [int]):
 
 
 # Part 6
+def longest_repetition(nums: list[int]):
+    if not nums:
+        return None
+
+    max_len = 1
+    current_len = 1
+    max_index = 0
+    current_start = 0
+
+    for i in range(1, len(nums)):
+        if nums[i] == nums[i - 1]:
+            current_len += 1
+        else:
+            if current_len > max_len:
+                max_len = current_len
+                max_index = current_start
+
+            current_len = 1
+            current_start = i
+
+
+    if current_len > max_len:
+        max_index = current_start
+
+    return max_index
+
+        
+
+
 
