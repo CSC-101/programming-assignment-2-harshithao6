@@ -8,9 +8,9 @@ import data
 def create_rectangle(p1: data.Point,p2: data.Point):
     # finding the top left corner
     if p1.x-p2.x>=0:
-        leftx = p1.x
-    else:
         leftx = p2.x
+    else:
+        leftx = p1.x
     if p1.y-p2.y>=0:
         lefty = p1.y
     else:
@@ -18,24 +18,22 @@ def create_rectangle(p1: data.Point,p2: data.Point):
 
     # Finding the bottom right corner
     if p1.x-p2.x>=0:
-        rightx = p2.x
-    else:
         rightx = p1.x
+    else:
+        rightx = p2.x
     if p1.y-p2.y>=0:
         righty = p2.y
     else:
         righty = p1.y
 
-    newp1 = data.Point(leftx,lefty)
-    newp2 = data.Point(rightx,righty)
-    return rectangle(newp1,newp2)
+    return data.Rectangle(data.Point(leftx,lefty),data.Point(rightx,righty))
 
 
 # Part 2
 def shorter_duration_than(d1: data.Duration, d2: data.Duration):
     if d2.minutes>d1.minutes:
         return True
-    elif d2.seconds>d2.seconds:
+    elif d2.minutes == d1.minutes and d2.seconds>d2.seconds:
         return True
     else:
         return False
@@ -46,11 +44,13 @@ def shorter_duration_than(d1: data.Duration, d2: data.Duration):
 def song_shorter_than(l1: list[data.Song], d: data.Duration):
     shortlist = []
     for i in range(len(l1)):
-        if l1[i].duration.minutes<= d.minutes:
+        if l1[i].duration.minutes < d.minutes:
             shortlist.append(l1[i])
-        elif l1[i].duration.seconds<d.seconds:
+        elif l1[i].duration.minutes==d.minutes and l1[i].duration.seconds < d.seconds:
             shortlist.append(l1[i])
     return shortlist
+
+
 
 
 # Part 4
@@ -67,6 +67,25 @@ def running_time(l1: list[data.Song], l2: [int]):
 
 
 # Part 5
+def validate_route(links:list[list[str]],names:list[str]):
+    answers = []
+    if names == [] or len(names) == 1:
+        return True
+    for i in range(len(links)-1):
+        if(links[i][0]==links[i+1][0]or
+                links[i][0] == links[i+1][1] or
+                links[i][1] == links[i+1][0] or
+                links[i][1] == links[i+1][1]):
+            answers.append(True)
+        else:
+            answers.append(False)
+        if False in answers:
+            return False
+        elif names == [] or len(names) == 1:
+            return True
+        else:
+            return True
+
 
 
 
