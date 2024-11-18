@@ -5,6 +5,9 @@ import data
 # Write your functions for each part in the space below.
 
 # Part 1
+#purpose: To make a rectangle based on two given points, assuming we don't know the top and bottom corners
+#input: 2 point objects
+#output: rectangle object
 def create_rectangle(p1: data.Point,p2: data.Point):
     # finding the top left corner
     if p1.x-p2.x>=0:
@@ -30,6 +33,9 @@ def create_rectangle(p1: data.Point,p2: data.Point):
 
 
 # Part 2
+#Purpose: To find if the first duration given is shorter than the second one
+#input: two duration objects
+#output: boolean
 def shorter_duration_than(d1: data.Duration, d2: data.Duration):
     if d2.minutes>d1.minutes:
         return True
@@ -39,8 +45,9 @@ def shorter_duration_than(d1: data.Duration, d2: data.Duration):
         return False
 
 # Part 3
-# Define a function named song_shorter_than with two parameters; the first of type list[Song] and the second of type Duration indicating an upper bound on a
-# song's length. This function must return a list of all songs (of type list[Song]) in the input list with duration less than the provided duration parameter.
+#purpose: To find out if a song is less than a specific duration
+#input: list of songs and a duration object
+#output: a list of all the songs shorter than the given duration
 def song_shorter_than(l1: list[data.Song], d: data.Duration):
     shortlist = []
     for i in range(len(l1)):
@@ -54,6 +61,9 @@ def song_shorter_than(l1: list[data.Song], d: data.Duration):
 
 
 # Part 4
+#Purpose: Find the total duration of the given songs
+#input: list of song objects and a list of integers
+#output: duration object
 def running_time(l1: list[data.Song], l2: [int]):
     totalmin = 0
     totalsec = 0
@@ -67,6 +77,9 @@ def running_time(l1: list[data.Song], l2: [int]):
 
 
 # Part 5
+#Purpose: To find a route between two places if there exists one
+#Input: a list of a list of cities and a list of the cities you are trying to find a link between
+#output: boolean, true or false to tell you if the route exists
 def validate_route(links:list[list[str]],names:list[str]):
     answers = []
     if names == [] or len(names) == 1:
@@ -90,6 +103,9 @@ def validate_route(links:list[list[str]],names:list[str]):
 
 
 # Part 6
+#Purpose: Find the longest repetition in a list of numbers
+#input: a list of integers
+#output: an integer, the index where the longest repetition starts
 def longest_repetition(nums: list[int]):
     if not nums:
         return None
